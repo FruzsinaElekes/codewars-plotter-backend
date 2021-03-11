@@ -11,7 +11,7 @@ public class CodeChallenge{
 	@JsonProperty("languages")
 	private List<String> languages;
 
-	@JsonProperty("publishedAt")
+    @JsonProperty("publishedAt")
 	private String publishedAt;
 
 	@JsonProperty("totalAttempts")
@@ -116,4 +116,26 @@ public class CodeChallenge{
 	public String getSlug(){
 		return slug;
 	}
+
+    @Override
+    public String toString() {
+        return "CodeChallenge{" +
+                "totalCompleted=" + totalCompleted +
+                ", languages=" + languages +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", totalAttempts=" + totalAttempts +
+                ", approvedBy=" + approvedBy +
+                ", description='" + description + '\'' +
+                ", approvedAt='" + approvedAt + '\'' +
+                ", url='" + url + '\'' +
+                ", tags=" + tags +
+                ", createdBy=" + createdBy +
+                ", totalStars=" + totalStars +
+                ", name='" + name + '\'' +
+                ", rank=" + rank +
+                ", id='" + id + '\'' +
+                ", category='" + category + '\'' +
+                ", slug='" + slug + '\'' +
+                '}';
+    }
 }
