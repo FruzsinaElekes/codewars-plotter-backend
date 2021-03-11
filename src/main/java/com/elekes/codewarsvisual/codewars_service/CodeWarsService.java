@@ -32,6 +32,15 @@ public class CodeWarsService {
         kataRepository.save(toSave);
     }
 
+    /**
+     * Needs type for every language maintained by codewars!
+     */
+    public void getUserFromCodeWars(String username, String apiKey) {
+        String url = baseUrl + "users/" + username + "?access_key=" + apiKey;
+        User user = restTemplate.getForObject(url, User.class);
+        System.out.println(user);
+    }
+
     public void getAllCompletedForUser(String username, String apiKey) {
         int page = 0;
         List<CompletedChallenge> challenges = new ArrayList<>();
