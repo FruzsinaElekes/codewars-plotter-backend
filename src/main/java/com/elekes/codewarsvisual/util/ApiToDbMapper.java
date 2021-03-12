@@ -13,12 +13,14 @@ public class ApiToDbMapper {
             Kata toSave = new Kata();
             toSave.setCodewarsId(codeChallenge.getId());
             toSave.setCategory(codeChallenge.getCategory());
-            toSave.setCreatedBy(codeChallenge.getCreatedBy().getUsername());
+            toSave.setCreatedBy(codeChallenge.getCreatedBy() != null? codeChallenge.getCreatedBy().getUsername(): null);
             toSave.setDescription(codeChallenge.getDescription());
             toSave.setName(codeChallenge.getName());
             toSave.setSlug(codeChallenge.getSlug());
             toSave.setUrl(codeChallenge.getUrl());
-            toSave.setRank(codeChallenge.getRank().getName());
+            toSave.setRank(codeChallenge.getRank() != null? codeChallenge.getRank().getName(): null);
+            toSave.setTags(codeChallenge.getTags());
+            toSave.setLanguages(codeChallenge.getLanguages());
             return toSave;
         }
     };

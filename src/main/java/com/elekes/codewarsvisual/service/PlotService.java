@@ -21,6 +21,7 @@ public class PlotService {
         List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username, apiKey);
         Map<String, Long> countByRank = completedKatas
                 .stream()
+                .filter(k -> k.getRank() != null)
                 .collect(Collectors.groupingBy(Kata::getRank, Collectors.counting()));
         List<DataPoint> points = new ArrayList<>();
         countByRank.forEach((rank, count) -> {points.add(new DataPoint(count, rank));});
