@@ -22,11 +22,13 @@ public class PlotService {
         Map<String, Long> countByRank = completedKatas
                 .stream()
                 .collect(Collectors.groupingBy(Kata::getRank, Collectors.counting()));
-        PlotData plotData = new PlotData();
         List<DataPoint> points = new ArrayList<>();
         countByRank.forEach((rank, count) -> {points.add(new DataPoint(count, rank));});
-        plotData.setDataPoints(points);
-        plotData.setLanguage(language);
+        PlotData plotData = PlotData.builder()
+                .dataPoints(points)
+                .language(language)
+                .totalCount(completedKatas.size())
+                .build();
         return plotData;
     }
 
