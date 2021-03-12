@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DataPoint implements Comparable {
 
-    private Long y;
+    private double y;
     private String label;
 
     @Override

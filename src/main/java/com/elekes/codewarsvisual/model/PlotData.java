@@ -40,7 +40,7 @@ public class PlotData {
     private List<DataPoint> calculatePercentages() {
         List<DataPoint> percentages = new ArrayList<>();
         for (DataPoint point : dataPoints) {
-            Long y = totalCount > 0 ? point.getY()*100/totalCount : 0;
+            double y = totalCount > 0 ? point.getY()*100/totalCount : 0;
             percentages.add(new DataPoint(y, point.getLabel()));
         }
         return percentages;
