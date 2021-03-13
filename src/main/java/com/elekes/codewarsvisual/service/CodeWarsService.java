@@ -31,10 +31,10 @@ public class CodeWarsService {
     /**
      * Needs type for every language maintained by codewars!
      */
-    public void getUserFromCodeWars(String username, String apiKey) {
+    public User getUserFromCodeWars(String username, String apiKey) {
         String url = baseUrl + "users/" + username + "?access_key=" + apiKey;
         User user = restTemplate.getForObject(url, User.class);
-        System.out.println(user);
+        return user;
     }
 
     public List<CompletedChallenge> getAllCompletedForUser(String username, String apiKey) {
