@@ -1,6 +1,6 @@
 package com.elekes.codewarsvisual.util;
 
-import com.elekes.codewarsvisual.apimodel.CodeChallenge;
+import com.elekes.codewarsvisual.apimodel.codechallenge.CodeChallenge;
 import com.elekes.codewarsvisual.entity.Kata;
 
 import java.util.function.Function;

@@ -1,6 +1,6 @@
 package com.elekes.codewarsvisual.service;
 
-import com.elekes.codewarsvisual.apimodel.CodeChallenge;
+import com.elekes.codewarsvisual.apimodel.codechallenge.CodeChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedPage;
 import com.elekes.codewarsvisual.apimodel.user.User;

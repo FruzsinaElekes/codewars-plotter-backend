@@ -1,4 +1,4 @@
-package com.elekes.codewarsvisual.apimodel;
+package com.elekes.codewarsvisual.apimodel.codechallenge;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
