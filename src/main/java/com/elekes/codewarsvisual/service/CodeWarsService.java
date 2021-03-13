@@ -5,7 +5,9 @@ import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedPage;
 import com.elekes.codewarsvisual.apimodel.user.User;
 import com.elekes.codewarsvisual.entity.Kata;
+import com.elekes.codewarsvisual.model.UserSummary;
 import com.elekes.codewarsvisual.util.ApiToDbMapper;
+import com.elekes.codewarsvisual.util.ApiToModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +22,7 @@ public class CodeWarsService {
     private String baseUrl;
     private RestTemplate restTemplate = new RestTemplate();
     private ApiToDbMapper mapper = new ApiToDbMapper();
+    private ApiToModelMapper apiToModelMapper = new ApiToModelMapper();
 
     public Kata getCodeChallengeFromCodeWars(String codewarsId) {
         String url = baseUrl + "code-challenges/" + codewarsId;
@@ -28,13 +31,11 @@ public class CodeWarsService {
         return toSave;
     }
 
-    /**
-     * Needs type for every language maintained by codewars!
-     */
-    public User getUserFromCodeWars(String username, String apiKey) {
+    public UserSummary getUserFromCodeWars(String username, String apiKey) {
         String url = baseUrl + "users/" + username + "?access_key=" + apiKey;
         User user = restTemplate.getForObject(url, User.class);
-        return user;
+        UserSummary userSummary = apiToModelMapper.UserToUserSummary(user);
+        return userSummary;
     }
 
     public List<CompletedChallenge> getAllCompletedForUser(String username, String apiKey) {

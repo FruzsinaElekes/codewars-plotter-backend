@@ -1,6 +1,7 @@
 package com.elekes.codewarsvisual.controller;
 
 import com.elekes.codewarsvisual.apimodel.user.User;
+import com.elekes.codewarsvisual.model.UserSummary;
 import com.elekes.codewarsvisual.service.CodeWarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ public class UserController {
     private CodeWarsService codeWarsService;
 
     @GetMapping("/user/{username}")
-    public User getUserData(@PathVariable String username, @RequestParam String apiKey) {
+    public UserSummary getUserData(@PathVariable String username, @RequestParam String apiKey) {
         return codeWarsService.getUserFromCodeWars(username, apiKey);
     }
 }
