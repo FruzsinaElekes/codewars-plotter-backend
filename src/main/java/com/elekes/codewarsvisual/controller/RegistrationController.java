@@ -1,5 +1,6 @@
 package com.elekes.codewarsvisual.controller;
 
+import com.elekes.codewarsvisual.model.RegisteredUser;
 import com.elekes.codewarsvisual.model.RegistrationData;
 import com.elekes.codewarsvisual.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ public class RegistrationController {
     private RegistrationService registrationService;
 
     @PostMapping("/register")
-    public void register(@RequestBody RegistrationData regData) {
-        registrationService.registerUser(regData);
+    public RegisteredUser register(@RequestBody RegistrationData regData) {
+        RegisteredUser reg = registrationService.registerUser(regData);
+        return reg;
     }
 }
