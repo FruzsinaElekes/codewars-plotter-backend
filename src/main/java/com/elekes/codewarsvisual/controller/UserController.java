@@ -4,12 +4,10 @@ import com.elekes.codewarsvisual.apimodel.user.User;
 import com.elekes.codewarsvisual.model.UserSummary;
 import com.elekes.codewarsvisual.service.CodeWarsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(value = "http://localhost:3000")
 public class UserController {
 
     @Autowired
