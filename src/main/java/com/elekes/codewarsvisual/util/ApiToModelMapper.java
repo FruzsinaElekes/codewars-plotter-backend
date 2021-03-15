@@ -8,6 +8,7 @@ import com.elekes.codewarsvisual.model.LanguageRank;
 import com.elekes.codewarsvisual.model.UserSummary;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class ApiToModelMapper {
                 .clan(user.getClan())
                 .honor(user.getHonor())
                 .leaderboardPosition(user.getLeaderboardPosition())
-                .skills(new HashSet<String>(user.getSkills()))
+                .skills(new HashSet<>(user.getSkills() != null? user.getSkills() : new ArrayList<>()))
                 .overallRank(LanguageRank.builder()
                         .language("overall")
                         .score(user.getRanks().getOverall().getScore())
