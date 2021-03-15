@@ -1,7 +1,7 @@
 package com.elekes.codewarsvisual.util;
 
 import com.elekes.codewarsvisual.entity.CodewarsUser;
-import com.elekes.codewarsvisual.model.RegisteredUser;
+import com.elekes.codewarsvisual.model.authentication.RegisteredUser;
 
 public class DbToModelMapper {
 

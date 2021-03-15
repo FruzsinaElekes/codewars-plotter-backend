@@ -1,7 +1,7 @@
 package com.elekes.codewarsvisual.controller;
 
-import com.elekes.codewarsvisual.model.RegisteredUser;
-import com.elekes.codewarsvisual.model.RegistrationData;
+import com.elekes.codewarsvisual.model.authentication.RegisteredUser;
+import com.elekes.codewarsvisual.model.authentication.RegistrationData;
 import com.elekes.codewarsvisual.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

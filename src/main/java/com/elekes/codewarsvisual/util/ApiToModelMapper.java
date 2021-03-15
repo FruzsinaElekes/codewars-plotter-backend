@@ -4,8 +4,8 @@ package com.elekes.codewarsvisual.util;
 import com.elekes.codewarsvisual.apimodel.user.Languages;
 import com.elekes.codewarsvisual.apimodel.user.ProgrammingLanguage;
 import com.elekes.codewarsvisual.apimodel.user.User;
-import com.elekes.codewarsvisual.model.LanguageRank;
-import com.elekes.codewarsvisual.model.UserSummary;
+import com.elekes.codewarsvisual.model.user.LanguageRank;
+import com.elekes.codewarsvisual.model.user.UserSummary;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

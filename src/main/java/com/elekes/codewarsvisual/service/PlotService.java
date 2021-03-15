@@ -1,8 +1,8 @@
 package com.elekes.codewarsvisual.service;
 
 import com.elekes.codewarsvisual.entity.Kata;
-import com.elekes.codewarsvisual.model.DataPoint;
-import com.elekes.codewarsvisual.model.PlotData;
+import com.elekes.codewarsvisual.model.plot.DataPoint;
+import com.elekes.codewarsvisual.model.plot.PlotData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

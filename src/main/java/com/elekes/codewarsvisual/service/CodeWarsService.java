@@ -5,7 +5,7 @@ import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedPage;
 import com.elekes.codewarsvisual.apimodel.user.User;
 import com.elekes.codewarsvisual.entity.Kata;
-import com.elekes.codewarsvisual.model.UserSummary;
+import com.elekes.codewarsvisual.model.user.UserSummary;
 import com.elekes.codewarsvisual.util.ApiToDbMapper;
 import com.elekes.codewarsvisual.util.ApiToModelMapper;
 import org.springframework.beans.factory.annotation.Value;

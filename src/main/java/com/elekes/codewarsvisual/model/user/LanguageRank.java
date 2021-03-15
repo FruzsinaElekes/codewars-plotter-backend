@@ -1,4 +1,4 @@
-package com.elekes.codewarsvisual.model;
+package com.elekes.codewarsvisual.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.elekes.codewarsvisual.model;
+package com.elekes.codewarsvisual.model.plot;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.elekes.codewarsvisual.controller;
 
-import com.elekes.codewarsvisual.model.PlotData;
+import com.elekes.codewarsvisual.model.plot.PlotData;
 import com.elekes.codewarsvisual.service.PlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

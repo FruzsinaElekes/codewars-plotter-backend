@@ -1,7 +1,6 @@
 package com.elekes.codewarsvisual.controller;
 
-import com.elekes.codewarsvisual.apimodel.user.User;
-import com.elekes.codewarsvisual.model.UserSummary;
+import com.elekes.codewarsvisual.model.user.UserSummary;
 import com.elekes.codewarsvisual.service.CodeWarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
