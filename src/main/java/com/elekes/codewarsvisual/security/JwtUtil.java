@@ -1,19 +1,26 @@
 package com.elekes.codewarsvisual.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static io.jsonwebtoken.Jwts.parser;
 
 @Service
 @Getter
@@ -56,4 +63,22 @@ public class JwtUtil {
         return token;
     }
 
+    public boolean validateToken(String token) {
+        Jws<Claims> claims = parser().setSigningKey(secret).parseClaimsJws(token);
+        Date expiration = claims.getBody().getExpiration();
+        Date now = new Date();
+        if (now.before(expiration)) return true;
+        return false;
+    }
+
+    public Authentication parseUserFromToken(String token) {
+        Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        String username = body.getSubject();
+        List<String> roles = (List<String>) body.get("roles");
+        List<SimpleGrantedAuthority> authorities = new LinkedList<>();
+        for (String role : roles){
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+        return new UsernamePasswordAuthenticationToken(username, "", authorities);
+    }
 }
