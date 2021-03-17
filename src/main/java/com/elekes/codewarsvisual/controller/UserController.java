@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(value = "http://localhost:3000")
+@CrossOrigin(value = "http://localhost:3000", allowCredentials = "true")
 public class UserController {
 
     @Autowired
     private CodeWarsService codeWarsService;
 
-    @GetMapping("/user/{username}")
-    public UserSummary getUserData(@PathVariable String username, @RequestParam String apiKey) {
+    @GetMapping("/user")
+    public UserSummary getUserData(@CookieValue String username, @CookieValue String apiKey) {
         return codeWarsService.getUserFromCodeWars(username, apiKey);
     }
 }
