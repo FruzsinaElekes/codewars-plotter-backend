@@ -59,7 +59,6 @@ public class JwtUtil {
         if (header != null && header.startsWith("Bearer ")) {
             token = header.substring(7);
         }
-        System.out.println(token);
         return token;
     }
 
