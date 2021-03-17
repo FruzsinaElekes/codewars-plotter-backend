@@ -1,6 +1,7 @@
 package com.elekes.codewarsvisual.service;
 
 import com.elekes.codewarsvisual.model.authentication.LoginCredentials;
+import com.elekes.codewarsvisual.model.authentication.Token;
 import com.elekes.codewarsvisual.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,11 +18,11 @@ public class LoginService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public String attemptLogin(LoginCredentials credentials) {
+    public Token attemptLogin(LoginCredentials credentials) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 credentials.getUsername(), credentials.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
-        return jwtUtil.createToken(authentication);
+        return new Token(jwtUtil.createToken(authentication), jwtUtil.getValidityInMs());
     }
 }
