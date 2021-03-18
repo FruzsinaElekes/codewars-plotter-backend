@@ -19,6 +19,15 @@ public class PlotService {
 
     public PlotData getPlotDataForLanguage(String language, String username, String apiKey) {
         List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username, apiKey);
+        return createPlotForKatas(completedKatas, language);
+    }
+
+    public PlotData getPlotDataForLanguage(String language, String username) {
+        List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username);
+        return createPlotForKatas(completedKatas, language);
+    }
+
+    private PlotData createPlotForKatas(List<Kata> completedKatas, String language) {
         Map<String, Long> countByRank = completedKatas
                 .stream()
                 .filter(k -> k.getRank() != null)

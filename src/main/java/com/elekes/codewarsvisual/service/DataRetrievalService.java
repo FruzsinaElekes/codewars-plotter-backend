@@ -21,6 +21,15 @@ public class DataRetrievalService {
 
     public List<Kata> getCompletedKatasPerLanguage(String language, String username, String apiKey) {
         List<CompletedChallenge> challenges = codeWarsService.getAllCompletedForUser(username, apiKey);
+        return persistNewAndReturnAllCompletedKatas(challenges, language);
+    }
+
+    public List<Kata> getCompletedKatasPerLanguage(String language, String username) {
+        List<CompletedChallenge> challenges = codeWarsService.getAllCompletedForUser(username);
+        return persistNewAndReturnAllCompletedKatas(challenges, language);
+    }
+
+    private List<Kata> persistNewAndReturnAllCompletedKatas(List<CompletedChallenge> challenges, String language) {
         Set<String> idSetForLanguage = getIdSetForLanguage(challenges, language);
         List<Kata> katasFromDb = kataService.getKatasIfCodewarsIdInSet(idSetForLanguage);
         Set<String> dbIds = katasFromDb

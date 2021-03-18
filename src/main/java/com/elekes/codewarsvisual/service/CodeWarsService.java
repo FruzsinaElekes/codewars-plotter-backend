@@ -33,28 +33,43 @@ public class CodeWarsService {
 
     public UserSummary getUserFromCodeWars(String username, String apiKey) {
         String url = baseUrl + "users/" + username + "?access_key=" + apiKey;
+        return requestUserAndMapToUserSummary(url);
+    }
+
+    public UserSummary getUserFromCodeWars(String username) {
+        String url = baseUrl + "users/" + username;
+        return requestUserAndMapToUserSummary(url);
+    }
+
+    private UserSummary requestUserAndMapToUserSummary(String url) {
         User user = restTemplate.getForObject(url, User.class);
         UserSummary userSummary = apiToModelMapper.UserToUserSummary(user);
         return userSummary;
     }
 
     public List<CompletedChallenge> getAllCompletedForUser(String username, String apiKey) {
+        String url = baseUrl + "users/" + username + "/code-challenges/completed?page=%s,access_key=" + apiKey;
+        return getAllPages(url);
+    }
+
+    public List<CompletedChallenge> getAllCompletedForUser(String username) {
+        String url = baseUrl + "users/" + username + "/code-challenges/completed?page=%s";
+        return getAllPages(url);
+    }
+
+    private List<CompletedChallenge> getAllPages(String urlNoPage) {
         int page = 0;
         List<CompletedChallenge> challenges = new ArrayList<>();
-        CompletedPage pageResponse = restTemplate.getForObject(urlForPage(page, username, apiKey), CompletedPage.class);
+        CompletedPage pageResponse = restTemplate.getForObject(String.format(urlNoPage, page), CompletedPage.class);
         challenges.addAll(pageResponse.getData());
         int pagesTotal = pageResponse.getTotalPages();
         if (pagesTotal > 1) {
             for (int i = 1; i < pagesTotal; i++) {
-                pageResponse = restTemplate.getForObject(urlForPage(i, username, apiKey), CompletedPage.class);
+                pageResponse = restTemplate.getForObject(String.format(urlNoPage, i), CompletedPage.class);
                 challenges.addAll(pageResponse.getData());
             }
         }
         return challenges;
-    }
-
-    private String urlForPage(int p, String username, String apiKey) {
-        return baseUrl + "users/" + username + "/code-challenges/completed?page=" + p + ",access_key=" + apiKey;
     }
 
 }
