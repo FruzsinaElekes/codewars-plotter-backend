@@ -23,19 +23,15 @@ public class DataRetrievalService {
 
     public List<Kata> getCompletedKatasPerLanguage(String language, String username) {
         List<CompletedChallenge> challenges = codeWarsService.getAllCompletedForUser(username);
-        Set<String> idSetForLanguage = getIdSetForLanguage(challenges, language);
-        List<Kata> katasFromDb = kataService.getKatasIfCodewarsIdInSet(idSetForLanguage);
-        Set<String> dbIds = katasFromDb
-                .stream()
-                .map(Kata::getCodewarsId)
-                .collect(Collectors.toSet());
-        List<Kata> katasFromApi = idSetForLanguage.stream()
-                .filter(id -> !dbIds.contains(id))
-                .map(id -> codeWarsService.getCodeChallengeFromCodeWars(id))
-                .collect(Collectors.toList());
-        kataService.saveListOfKatas(katasFromApi);
-        katasFromDb.addAll(katasFromApi);
-        return katasFromDb;
+
+        for (CompletedChallenge completedChallenge : challenges) {
+            if (completedChallenge.getCompletedLanguages().contains(language)
+                    && !kataService.isChallengeInDatabase(completedChallenge.getId())) {
+                Kata fromApi = codeWarsService.getCodeChallengeFromCodeWars(completedChallenge.getId());
+                kataService.saveKataIfNotInDb(fromApi);
+            }
+        }
+        return kataService.getKatasIfCodewarsIdInSet(getIdSetForLanguage(challenges, language));
     }
 
 
