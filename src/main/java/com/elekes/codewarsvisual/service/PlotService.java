@@ -17,10 +17,6 @@ public class PlotService {
     @Autowired
     private DataRetrievalService dataRetrievalService;
 
-    public PlotData getPlotDataForLanguage(String language, String username, String apiKey) {
-        List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username, apiKey);
-        return createPlotForKatas(completedKatas, language);
-    }
 
     public PlotData getPlotDataForLanguage(String language, String username) {
         List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username);

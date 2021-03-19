@@ -5,6 +5,7 @@ import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedPage;
 import com.elekes.codewarsvisual.apimodel.user.User;
 import com.elekes.codewarsvisual.entity.Kata;
+import com.elekes.codewarsvisual.model.user.KataCompletionDetail;
 import com.elekes.codewarsvisual.model.user.UserSummary;
 import com.elekes.codewarsvisual.util.ApiToDbMapper;
 import com.elekes.codewarsvisual.util.ApiToModelMapper;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CodeWarsService {
@@ -31,33 +33,15 @@ public class CodeWarsService {
         return toSave;
     }
 
-    public UserSummary getUserFromCodeWars(String username, String apiKey) {
-        String url = baseUrl + "users/" + username + "?access_key=" + apiKey;
-        return requestUserAndMapToUserSummary(url);
-    }
-
     public UserSummary getUserFromCodeWars(String username) {
         String url = baseUrl + "users/" + username;
-        return requestUserAndMapToUserSummary(url);
-    }
-
-    private UserSummary requestUserAndMapToUserSummary(String url) {
         User user = restTemplate.getForObject(url, User.class);
         UserSummary userSummary = apiToModelMapper.UserToUserSummary(user);
         return userSummary;
     }
 
-    public List<CompletedChallenge> getAllCompletedForUser(String username, String apiKey) {
-        String url = baseUrl + "users/" + username + "/code-challenges/completed?page=%s,access_key=" + apiKey;
-        return getAllPages(url);
-    }
-
     public List<CompletedChallenge> getAllCompletedForUser(String username) {
-        String url = baseUrl + "users/" + username + "/code-challenges/completed?page=%s";
-        return getAllPages(url);
-    }
-
-    private List<CompletedChallenge> getAllPages(String urlNoPage) {
+        String urlNoPage = baseUrl + "users/" + username + "/code-challenges/completed?page=%s";
         int page = 0;
         List<CompletedChallenge> challenges = new ArrayList<>();
         CompletedPage pageResponse = restTemplate.getForObject(String.format(urlNoPage, page), CompletedPage.class);
