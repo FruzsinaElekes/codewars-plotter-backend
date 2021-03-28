@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 public class DataPoint implements Comparable {
 
     private double y;
-    private String label;
+    private String x;
+    private String longLabel;
 
     @Override
     public int compareTo(Object o) {
-        if (this.label.compareTo(((DataPoint)o).getLabel()) > 0) return -1;
-        return 11;
+        if (this.x.compareTo(((DataPoint)o).getX()) > 0) return -1;
+        return 1;
     }
 }

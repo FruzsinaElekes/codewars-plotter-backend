@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,7 +30,11 @@ public class PlotService {
                 .filter(k -> k.getRank() != null)
                 .collect(Collectors.groupingBy(Kata::getRank, Collectors.counting()));
         List<DataPoint> points = new ArrayList<>();
-        countByRank.forEach((rank, count) -> {points.add(new DataPoint(count, rank));});
+        countByRank.forEach((rank, count) -> {
+            String label = String.format("%s (%s: %s)", count, language, rank);
+            points.add(new DataPoint(count, rank, label));
+        });
+        Collections.reverse(points);
         PlotData plotData = PlotData.builder()
                 .dataPoints(points)
                 .language(language)
