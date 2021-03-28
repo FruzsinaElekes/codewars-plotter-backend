@@ -136,6 +136,83 @@ public class Languages{
     @JsonProperty("fortran")
     private ProgrammingLanguage fortran;
 
+    @JsonProperty("agda")
+    private ProgrammingLanguage agda;
+
+    @JsonProperty("bf")
+    private ProgrammingLanguage bf;
+
+    @JsonProperty("cfml")
+    private ProgrammingLanguage cfml;
+
+    @JsonProperty("cobol")
+    private ProgrammingLanguage cobol;
+
+    @JsonProperty("commonlisp")
+    private ProgrammingLanguage commonlisp;
+
+    @JsonProperty("coq")
+    private ProgrammingLanguage coq;
+
+    @JsonProperty("erlang")
+    private ProgrammingLanguage erlang;
+
+    @JsonProperty("idris")
+    private ProgrammingLanguage idris;
+
+    @JsonProperty("lean")
+    private ProgrammingLanguage lean;
+
+    @JsonProperty("pearl")
+    private ProgrammingLanguage pearl;
+
+    public ProgrammingLanguage getAgda() {
+        return agda;
+    }
+
+    public ProgrammingLanguage getBf() {
+        return bf;
+    }
+
+    public ProgrammingLanguage getCfml() {
+        return cfml;
+    }
+
+    public ProgrammingLanguage getCobol() {
+        return cobol;
+    }
+
+    public ProgrammingLanguage getCommonlisp() {
+        return commonlisp;
+    }
+
+    public ProgrammingLanguage getCoq() {
+        return coq;
+    }
+
+    public ProgrammingLanguage getErlang() {
+        return erlang;
+    }
+
+    public ProgrammingLanguage getIdris() {
+        return idris;
+    }
+
+    public ProgrammingLanguage getLean() {
+        return lean;
+    }
+
+    public ProgrammingLanguage getPearl() {
+        return pearl;
+    }
+
+    public ProgrammingLanguage getPurescript() {
+        return purescript;
+    }
+
+    @JsonProperty("purescript")
+    private ProgrammingLanguage purescript;
+
     public ProgrammingLanguage getHaskell() {
         return haskell;
     }
@@ -311,13 +388,5 @@ public class Languages{
     public ProgrammingLanguage getSql() {
         return sql;
     }
-//	@Override
-// 	public String toString(){
-//		return
-//			"Languages{" +
-//			"coffeescript = '" + coffeescript + '\'' +
-//			",javascript = '" + javascript + '\'' +
-//			",ruby = '" + ruby + '\'' +
-//			"}";
-//		}
+
 }
