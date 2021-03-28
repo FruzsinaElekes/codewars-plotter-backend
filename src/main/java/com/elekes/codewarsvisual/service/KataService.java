@@ -20,7 +20,7 @@ public class KataService {
     }
 
     public boolean isChallengeInDatabase(String codewarsId) {
-        return kataRepository.findByCodewarsId(codewarsId).isPresent();
+        return kataRepository.findFirstByCodewarsId(codewarsId).isPresent();
     }
 
     @Transactional

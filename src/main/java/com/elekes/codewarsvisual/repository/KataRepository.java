@@ -12,4 +12,5 @@ public interface KataRepository extends JpaRepository<Kata, Long> {
 
     List<Kata> findByCodewarsIdIn(Set<String> idList);
     Optional<Kata> findByCodewarsId(String codewarsId);
+    Optional<Kata> findFirstByCodewarsId(String codewarsId);
 }
