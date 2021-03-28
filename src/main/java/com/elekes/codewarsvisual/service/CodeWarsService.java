@@ -11,10 +11,12 @@ import com.elekes.codewarsvisual.util.ApiToDbMapper;
 import com.elekes.codewarsvisual.util.ApiToModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,10 +28,16 @@ public class CodeWarsService {
     private ApiToDbMapper mapper = new ApiToDbMapper();
     private ApiToModelMapper apiToModelMapper = new ApiToModelMapper();
 
-    public Kata getCodeChallengeFromCodeWars(String codewarsId) {
+    public Optional<Kata> getCodeChallengeFromCodeWars(String codewarsId) {
         String url = baseUrl + "code-challenges/" + codewarsId;
-        CodeChallenge response = restTemplate.getForObject(url, CodeChallenge.class);
-        Kata toSave = mapper.codeChallengeToKata.apply(response);
+        Optional<Kata> toSave;
+        try{
+            CodeChallenge response = restTemplate.getForObject(url, CodeChallenge.class);
+            Kata kata = mapper.codeChallengeToKata.apply(response);
+            toSave = Optional.of(kata);
+        } catch (HttpClientErrorException e){
+            toSave = Optional.empty();
+        }
         return toSave;
     }
 

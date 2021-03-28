@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +28,8 @@ public class DataRetrievalService {
         for (CompletedChallenge completedChallenge : challenges) {
             if (completedChallenge.getCompletedLanguages().contains(language)
                     && !kataService.isChallengeInDatabase(completedChallenge.getId())) {
-                Kata fromApi = codeWarsService.getCodeChallengeFromCodeWars(completedChallenge.getId());
-                kataService.saveKataIfNotInDb(fromApi);
+                Optional<Kata> fromApi = codeWarsService.getCodeChallengeFromCodeWars(completedChallenge.getId());
+                fromApi.ifPresent((kata) -> kataService.saveKataIfNotInDb(kata));
             }
         }
         return kataService.getKatasIfCodewarsIdInSet(getIdSetForLanguage(challenges, language));
