@@ -20,9 +20,6 @@ public class CodeChallenge{
 	@JsonProperty("approvedBy")
 	private ApprovedBy approvedBy;
 
-	@JsonProperty("description")
-	private String description;
-
 	@JsonProperty("approvedAt")
 	private String approvedAt;
 
@@ -73,10 +70,6 @@ public class CodeChallenge{
 		return approvedBy;
 	}
 
-	public String getDescription(){
-		return description;
-	}
-
 	public String getApprovedAt(){
 		return approvedAt;
 	}
@@ -125,7 +118,6 @@ public class CodeChallenge{
                 ", publishedAt='" + publishedAt + '\'' +
                 ", totalAttempts=" + totalAttempts +
                 ", approvedBy=" + approvedBy +
-                ", description='" + description + '\'' +
                 ", approvedAt='" + approvedAt + '\'' +
                 ", url='" + url + '\'' +
                 ", tags=" + tags +

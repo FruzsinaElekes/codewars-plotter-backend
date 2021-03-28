@@ -21,7 +21,6 @@ public class KataCompletionDetail {
     private List<String> languages = new LinkedList<>();
     private String rank;
     private String url;
-    private String description;
     private String createdBy;
     private List<String> tags = new LinkedList<>();
     private List<String> completedLanguages;

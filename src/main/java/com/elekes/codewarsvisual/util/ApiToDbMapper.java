@@ -14,7 +14,6 @@ public class ApiToDbMapper {
             toSave.setCodewarsId(codeChallenge.getId());
             toSave.setCategory(codeChallenge.getCategory());
             toSave.setCreatedBy(codeChallenge.getCreatedBy() != null? codeChallenge.getCreatedBy().getUsername(): null);
-            toSave.setDescription(codeChallenge.getDescription());
             toSave.setName(codeChallenge.getName());
             toSave.setSlug(codeChallenge.getSlug());
             toSave.setUrl(codeChallenge.getUrl());
