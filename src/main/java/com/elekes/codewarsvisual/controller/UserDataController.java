@@ -30,7 +30,7 @@ public class UserDataController {
         return codeWarsService.getUserFromCodeWars(username);
     }
 
-    @GetMapping("/{username}/plot/{language}")
+    @GetMapping("/{username}/plots/{language}")
     public PlotData getPlotDataForLanguage(@PathVariable String language, @PathVariable String username) {
         return plotService.getPlotDataForLanguage(language, username);
     }
