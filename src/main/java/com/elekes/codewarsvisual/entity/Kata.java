@@ -15,9 +15,6 @@ import java.util.List;
 public class Kata {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
     private String codewarsId;
     private String name;
     private String slug;

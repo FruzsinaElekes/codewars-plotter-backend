@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public interface KataRepository extends JpaRepository<Kata, Long> {
+public interface KataRepository extends JpaRepository<Kata, String> {
 
     List<Kata> findByCodewarsIdIn(Set<String> idList);
-    Optional<Kata> findByCodewarsId(String codewarsId);
     Optional<Kata> findFirstByCodewarsId(String codewarsId);
 }
