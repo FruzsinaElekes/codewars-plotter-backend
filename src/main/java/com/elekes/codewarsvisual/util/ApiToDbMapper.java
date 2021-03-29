@@ -19,7 +19,6 @@ public class ApiToDbMapper {
             toSave.setUrl(codeChallenge.getUrl());
             toSave.setRank(codeChallenge.getRank() != null? codeChallenge.getRank().getName(): null);
             toSave.setTags(codeChallenge.getTags());
-            toSave.setLanguages(codeChallenge.getLanguages());
             return toSave;
         }
     };

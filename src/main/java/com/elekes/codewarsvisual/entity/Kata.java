@@ -22,8 +22,6 @@ public class Kata {
     private String name;
     private String slug;
     private String category;
-    @ElementCollection
-    private List<String> languages = new LinkedList<>();
     private String rank;
     private String url;
     @Column(columnDefinition = "TEXT")
