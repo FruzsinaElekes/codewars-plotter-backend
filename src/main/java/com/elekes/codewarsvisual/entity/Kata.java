@@ -27,7 +27,6 @@ public class Kata {
     private String rank;
     private String url;
     @Column(columnDefinition = "TEXT")
-    private String description;
     private String createdBy;
     @ElementCollection
     private List<String> tags = new LinkedList<>();

@@ -61,7 +61,6 @@ public class DataRetrievalService {
                     .category(kata.getCategory())
                     .codewarsId(kata.getCodewarsId())
                     .createdBy(kata.getCreatedBy())
-                    .description(kata.getDescription())
                     .languages(kata.getLanguages())
                     .tags(kata.getTags())
                     .rank(kata.getRank())
