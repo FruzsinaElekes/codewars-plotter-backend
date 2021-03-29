@@ -15,15 +15,10 @@ import java.util.List;
 public class Kata {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
     private String codewarsId;
     private String name;
     private String slug;
     private String category;
-    @ElementCollection
-    private List<String> languages = new LinkedList<>();
     private String rank;
     private String url;
     @Column(columnDefinition = "TEXT")

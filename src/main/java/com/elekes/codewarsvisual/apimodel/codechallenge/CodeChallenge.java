@@ -8,9 +8,6 @@ public class CodeChallenge{
 	@JsonProperty("totalCompleted")
 	private int totalCompleted;
 
-	@JsonProperty("languages")
-	private List<String> languages;
-
     @JsonProperty("publishedAt")
 	private String publishedAt;
 
@@ -52,10 +49,6 @@ public class CodeChallenge{
 
 	public int getTotalCompleted(){
 		return totalCompleted;
-	}
-
-	public List<String> getLanguages(){
-		return languages;
 	}
 
 	public String getPublishedAt(){
@@ -114,7 +107,6 @@ public class CodeChallenge{
     public String toString() {
         return "CodeChallenge{" +
                 "totalCompleted=" + totalCompleted +
-                ", languages=" + languages +
                 ", publishedAt='" + publishedAt + '\'' +
                 ", totalAttempts=" + totalAttempts +
                 ", approvedBy=" + approvedBy +

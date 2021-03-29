@@ -18,7 +18,6 @@ public class KataCompletionDetail {
     private String name;
     private String slug;
     private String category;
-    private List<String> languages = new LinkedList<>();
     private String rank;
     private String url;
     private String createdBy;
