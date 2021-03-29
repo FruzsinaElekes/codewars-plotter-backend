@@ -29,7 +29,7 @@ public class DataRetrievalService {
             if (completedChallenge.getCompletedLanguages().contains(language)
                     && !kataService.isChallengeInDatabase(completedChallenge.getId())) {
                 Optional<Kata> fromApi = codeWarsService.getCodeChallengeFromCodeWars(completedChallenge.getId());
-                fromApi.ifPresent((kata) -> kataService.saveKataIfNotInDb(kata));
+                fromApi.ifPresent((kata) -> kataService.saveKata(kata));
             }
         }
         return kataService.getKatasIfCodewarsIdInSet(getIdSetForLanguage(challenges, language));
