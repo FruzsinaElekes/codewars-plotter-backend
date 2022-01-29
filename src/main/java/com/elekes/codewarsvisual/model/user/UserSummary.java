@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Set;
 
+/***
+ * Class representing information to be displayed on the Statistics page
+ */
 @Data
 @AllArgsConstructor
 @Builder

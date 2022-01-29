@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/***
+ * Class responsible for constructing a PlotData object for a particular Language and User
+ */
 @Service
 public class PlotService {
 

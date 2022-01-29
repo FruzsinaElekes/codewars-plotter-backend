@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import java.util.LinkedList;
 import java.util.List;
 
+/***
+ * Class representing information about a Kata in relation to a particular User - to be displayed on KataFinder page.
+ * Contains general information about the Kata itself, and all the languages the user had this Kata completed.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

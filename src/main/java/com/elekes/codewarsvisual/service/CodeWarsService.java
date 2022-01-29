@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/***
+ * Class responsible for making Http requests to the Codewars API
+ */
 @Service
 public class CodeWarsService {
 
@@ -23,6 +26,13 @@ public class CodeWarsService {
     private String baseUrl;
     private RestTemplate restTemplate = new RestTemplate();
 
+    /***
+     * Retrieve Information about a Kata from Codewars.
+     * We are assuming that Kata information do not change. The returned object is saved into our database and is never
+     * fetched from the API again.
+     * @param codewarsId id of the requested Kata
+     * @return Optional</Kata> to be saved into the database
+     */
     public Optional<Kata> getCodeChallengeFromCodeWars(String codewarsId) {
         String url = baseUrl + "code-challenges/" + codewarsId;
         Optional<Kata> toSave;
@@ -36,6 +46,13 @@ public class CodeWarsService {
         return toSave;
     }
 
+    /***
+     * Retrieve Information about a User from Codewars.
+     * This changes with every newly completed or authored Kata (and other user activities), so this is fetched every time
+     * a user's username is entered on the landing page
+     * @param username username to look for
+     * @return UserSummary object
+     */
     public UserSummary getUserFromCodeWars(String username) {
         String url = baseUrl + "users/" + username;
         User user = restTemplate.getForObject(url, User.class);
@@ -43,6 +60,12 @@ public class CodeWarsService {
         return userSummary;
     }
 
+    /***
+     * Retrieve Information about Katas completed by a User from Codewars.
+     * May send multiple Http requests to a paginated endpoint, depending on number of solved Katas.
+     * @param username username to look for
+     * @return List of CompletedChallenges
+     */
     public List<CompletedChallenge> getAllCompletedForUser(String username) {
         String urlNoPage = baseUrl + "users/" + username + "/code-challenges/completed?page=%s";
         int page = 0;

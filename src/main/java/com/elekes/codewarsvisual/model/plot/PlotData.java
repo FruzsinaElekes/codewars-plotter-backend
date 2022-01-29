@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/***
+ * Class representing information about progress for a single language (number of Katas solved per rank),
+ * to be displayed as a plot on the Statistics page
+ */
 @Data
 @NoArgsConstructor
 @Builder
