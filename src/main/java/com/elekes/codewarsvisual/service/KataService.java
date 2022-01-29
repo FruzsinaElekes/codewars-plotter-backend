@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class KataService {
@@ -14,8 +16,10 @@ public class KataService {
     @Autowired
     KataRepository kataRepository;
 
-    public List<Kata> getKatasIfCodewarsIdInSet(Set<String> ids) {
-        return kataRepository.findByCodewarsIdIn(ids);
+    public Map<String, Kata> getKatasIfCodewarsIdInSet(Set<String> ids) {
+        return kataRepository.findByCodewarsIdIn(ids)
+                .stream()
+                .collect(Collectors.toMap(Kata::getCodewarsId, kata -> kata));
     }
 
     public boolean isChallengeInDatabase(String codewarsId) {

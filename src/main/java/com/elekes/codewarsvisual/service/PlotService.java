@@ -6,10 +6,7 @@ import com.elekes.codewarsvisual.model.plot.PlotData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,11 +17,11 @@ public class PlotService {
 
 
     public PlotData getPlotDataForLanguage(String language, String username) {
-        List<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username);
+        Collection<Kata> completedKatas = dataRetrievalService.getCompletedKatasPerLanguage(language, username).values();
         return createPlotForKatas(completedKatas, language);
     }
 
-    private PlotData createPlotForKatas(List<Kata> completedKatas, String language) {
+    private PlotData createPlotForKatas(Collection<Kata> completedKatas, String language) {
         Map<String, Long> countByRank = completedKatas
                 .stream()
                 .filter(k -> k.getRank() != null)

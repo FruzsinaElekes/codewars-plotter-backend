@@ -5,10 +5,8 @@ import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.completed.CompletedPage;
 import com.elekes.codewarsvisual.apimodel.user.User;
 import com.elekes.codewarsvisual.entity.Kata;
-import com.elekes.codewarsvisual.model.user.KataCompletionDetail;
 import com.elekes.codewarsvisual.model.user.UserSummary;
-import com.elekes.codewarsvisual.util.ApiToDbMapper;
-import com.elekes.codewarsvisual.util.ApiToModelMapper;
+import com.elekes.codewarsvisual.util.Mapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -17,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CodeWarsService {
@@ -25,15 +22,13 @@ public class CodeWarsService {
     @Value("${codewars.base.url}")
     private String baseUrl;
     private RestTemplate restTemplate = new RestTemplate();
-    private ApiToDbMapper mapper = new ApiToDbMapper();
-    private ApiToModelMapper apiToModelMapper = new ApiToModelMapper();
 
     public Optional<Kata> getCodeChallengeFromCodeWars(String codewarsId) {
         String url = baseUrl + "code-challenges/" + codewarsId;
         Optional<Kata> toSave;
         try{
             CodeChallenge response = restTemplate.getForObject(url, CodeChallenge.class);
-            Kata kata = mapper.codeChallengeToKata.apply(response);
+            Kata kata = Mapper.codeChallengeToKata(response);
             toSave = Optional.of(kata);
         } catch (HttpClientErrorException e){
             toSave = Optional.empty();
@@ -44,7 +39,7 @@ public class CodeWarsService {
     public UserSummary getUserFromCodeWars(String username) {
         String url = baseUrl + "users/" + username;
         User user = restTemplate.getForObject(url, User.class);
-        UserSummary userSummary = apiToModelMapper.UserToUserSummary(user);
+        UserSummary userSummary = Mapper.UserToUserSummary(user);
         return userSummary;
     }
 

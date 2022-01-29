@@ -1,20 +1,55 @@
 package com.elekes.codewarsvisual.util;
 
-
+import com.elekes.codewarsvisual.apimodel.codechallenge.CodeChallenge;
+import com.elekes.codewarsvisual.apimodel.completed.CompletedChallenge;
 import com.elekes.codewarsvisual.apimodel.user.Languages;
 import com.elekes.codewarsvisual.apimodel.user.ProgrammingLanguage;
 import com.elekes.codewarsvisual.apimodel.user.User;
+import com.elekes.codewarsvisual.entity.Kata;
+import com.elekes.codewarsvisual.model.user.KataCompletionDetail;
 import com.elekes.codewarsvisual.model.user.LanguageRank;
 import com.elekes.codewarsvisual.model.user.UserSummary;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public class ApiToModelMapper {
+public class Mapper {
 
-    public UserSummary UserToUserSummary(User user) {
+    public static List<KataCompletionDetail> kataMapToCompletionDetailList(Map<String, Kata> kataById, List<CompletedChallenge> completed) {
+        List<KataCompletionDetail> kataCompletionDetailList = new ArrayList<>();
+
+        for (CompletedChallenge challenge : completed) {
+            Kata kata = kataById.get(challenge.getId());
+            kataCompletionDetailList.add(KataCompletionDetail.builder()
+                    .completedAt(challenge.getCompletedAt())
+                    .completedLanguages(challenge.getCompletedLanguages())
+                    .category(kata.getCategory())
+                    .codewarsId(kata.getCodewarsId())
+                    .createdBy(kata.getCreatedBy())
+                    .tags(kata.getTags())
+                    .rank(kata.getRank())
+                    .url(kata.getUrl())
+                    .name(kata.getName())
+                    .slug(kata.getSlug())
+                    .build());
+        }
+        return kataCompletionDetailList;
+    }
+
+    public static Kata codeChallengeToKata(CodeChallenge challenge){
+        Kata toSave = new Kata();
+        toSave.setCodewarsId(challenge.getId());
+        toSave.setCategory(challenge.getCategory());
+        toSave.setCreatedBy(challenge.getCreatedBy() != null? challenge.getCreatedBy().getUsername(): null);
+        toSave.setName(challenge.getName());
+        toSave.setSlug(challenge.getSlug());
+        toSave.setUrl(challenge.getUrl());
+        toSave.setRank(challenge.getRank() != null? challenge.getRank().getName(): null);
+        toSave.setTags(challenge.getTags());
+        return toSave;
+    }
+
+    public static UserSummary UserToUserSummary(User user) {
         UserSummary userSummary = UserSummary.builder()
                 .username(user.getUsername())
                 .name(user.getName())
@@ -36,7 +71,7 @@ public class ApiToModelMapper {
         return userSummary;
     }
 
-    private Set<LanguageRank> getSetOfLanguageRankFromLanguages(Languages languages) {
+    private static Set<LanguageRank> getSetOfLanguageRankFromLanguages(Languages languages) {
         Field[] fields = Languages.class.getDeclaredFields();
         Set<LanguageRank> ranks = new HashSet<>();
         try {
@@ -57,5 +92,4 @@ public class ApiToModelMapper {
         }
         return ranks;
     }
-
 }
