@@ -3,6 +3,8 @@
 This API serves data for the https://codewars-plotter.herokuapp.com website. Data is retrieved from the public endpoints of the Codewars API (https://dev.codewars.com/). 
 Base information about katas (rank, tags, url, category etc.) are stored in a PostrgeSQL database after retrieved.
 
+I use a free Heroku account for development. The dynos (containers) go to sleep after 30 minutes of inactivity, and take time to wake up when they receive a request. If you visit the page, please be ready to wait a little - it will eventually respond.
+
 ### Endpoints
 
 The frontend app queries data through RESTful endpoints. 
